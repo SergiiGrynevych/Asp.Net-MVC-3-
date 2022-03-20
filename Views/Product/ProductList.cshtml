@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebApplication1_DZ3.Models.Product>
+@{
+    ViewBag.Title = "ProductList";
+}
+
+@section Header{
+
+    @for (int i = 0; i < WebApplication1_DZ3.Models.ActionLink.nameLink.Length; i++)
+    {
+        WebApplication1_DZ3.Models.ActionLink.currentLink = WebApplication1_DZ3.Models.ActionLink.nameLink[i];
+        if (WebApplication1_DZ3.Models.ActionLink.currentLink != ViewBag.Title)
+        {
+            <a>@Html.RouteLink("Get " + WebApplication1_DZ3.Models.ActionLink.currentLink.ToString(), new { controller = "Product", action = WebApplication1_DZ3.Models.ActionLink.currentLink })</a>
+        }
+    }
+}
+
+@section Body{
+    @foreach (var item in Model)
+    {
+        @Html.Partial("_ProductList", item);
+    }
+}
